@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Library" default="copyToProject" basedir=".">
+	<property name="build" value = "bin"/>
+	<property name="doc" value="doc"/>
+	<property name="tfsplib.jar" value = "tfsp-lib.jar"/>
+	<target name="buildLibrary">
+		<jar jarfile="${tfsplib.jar}" compress="false" >
+			<fileset dir="${build}">
+				<include name="com/**/*.class"/>
+				<include name="META-INF/**/*.tld"/>
+				<include name="resources/*.*"/>
+				<exclude name="com/**/test/**/*.*"/>
+			</fileset>
+		</jar>
+	</target>
+	<target name="copyToProject" depends="buildLibrary">
+		<copy file="${tfsplib.jar}" tofile="../CMS\WebRoot\WEB-INF\lib/${tfsplib.jar}"/>
+	</target>
+
+</project>
